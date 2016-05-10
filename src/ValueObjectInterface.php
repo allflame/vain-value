@@ -10,6 +10,10 @@ namespace Vain\Value;
 
 interface ValueObjectInterface
 {
+    const EQUAL = 0;
+    const LESS = -1;
+    const GREATER = 1;
+
     /**
      * @param ValueObjectInterface $to
      * 

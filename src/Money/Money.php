@@ -10,9 +10,8 @@ namespace Vain\Value\Money;
 
 use Vain\Value\AbstractValueObject;
 use Vain\Value\Money\Rate\RateProviderInterface;
-use Vain\Value\ValueObjectInterface;
 
-class Money extends AbstractValueObject implements ValueObjectInterface
+class Money extends AbstractValueObject
 {
 
     private $intPart;
@@ -75,13 +74,13 @@ class Money extends AbstractValueObject implements ValueObjectInterface
         $difference = ($this->getIntPart() * $currencyRate - $to->getIntPart()) + ($this->getDecimalPart() * $currencyRate - $to->getDecimalPart());
 
         if (abs($difference) < pow(10, min($this->getCurrency()->getPrecision(), $to->getCurrency()->getPrecision()))) {
-            return 0;
+            return self::EQUAL;
         }
 
         if ($difference > 0) {
-            return 1;
+            return self::GREATER;
         } else {
-            return -1;
+            return self::LESS;
         }
     }
 }

@@ -61,13 +61,13 @@ class Weight extends AbstractValueObject implements ValueObjectInterface
         $diff = $this->quantity * $this->coefficientProvider->getCoefficient($this->units, $to->getUnits());
 
         if (abs($diff) < pow(10, self::PRECISION)) {
-            return 0;
+            return self::EQUAL;
         }
 
-        if ($diff < 0) {
-            return -1;
+        if ($diff > 0) {
+            return self::GREATER;
         } else {
-            return 1;
+            return self::LESS;
         }
     }
 }
