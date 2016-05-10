@@ -83,4 +83,14 @@ class Money extends AbstractValueObject
             return self::LESS;
         }
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf('%d.%d %s', $this->intPart, $this->decimalPart, $this->currency->getCode());
+    }
+
+
 }

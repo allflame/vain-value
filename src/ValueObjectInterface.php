@@ -20,4 +20,9 @@ interface ValueObjectInterface
      * @return int
      */
     public function compare(ValueObjectInterface $to);
+
+    /**
+     * @return string
+     */
+    public function __toString();
 }

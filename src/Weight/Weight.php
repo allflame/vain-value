@@ -70,4 +70,14 @@ class Weight extends AbstractValueObject implements ValueObjectInterface
             return self::LESS;
         }
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf('%s %s', $this->quantity, $this->units);
+    }
+
+
 }
