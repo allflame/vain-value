@@ -64,14 +64,23 @@ class Money extends AbstractValueObject
     /**
      * @param Money $to
      *
+     * @return float
+     */
+    protected function getScaledDiff(Money $to)
+    {
+        $currencyRate = $this->rateProvider->getCurrencyRate($to->getCurrency(), $this->currency, new \DateTime());
+
+        return ($to->getIntPart() * $currencyRate - $this->getIntPart()) + ($to->getDecimalPart() * $currencyRate - $this->getDecimalPart());
+    }
+
+    /**
+     * @param Money $to
+     *
      * @return int
      */
     protected function doComparison($to)
     {
-        $now = new \DateTime();
-        $currencyRate = $this->rateProvider->getCurrencyRate($this->currency, $to->getCurrency(), $now);
-
-        $difference = ($this->getIntPart() * $currencyRate - $to->getIntPart()) + ($this->getDecimalPart() * $currencyRate - $to->getDecimalPart());
+        $difference = $this->getScaledDiff($to);
 
         if (abs($difference) < pow(10, min($this->getCurrency()->getPrecision(), $to->getCurrency()->getPrecision()))) {
             return self::EQUAL;
@@ -85,12 +94,23 @@ class Money extends AbstractValueObject
     }
 
     /**
+     * @param Money $to
+     *
+     * @return Money
+     */
+    protected function doDiff($to)
+    {
+        $diff = $this->getScaledDiff($to);
+        $intPart = intval($diff);
+
+        return new Money($intPart, $diff - $intPart, $this->currency, $this->rateProvider);
+    }
+
+    /**
      * @return string
      */
     public function __toString()
     {
         return sprintf('%d.%d %s', $this->intPart, $this->decimalPart, $this->currency->getCode());
     }
-
-
 }

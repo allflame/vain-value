@@ -13,11 +13,18 @@ use Vain\Value\Exception\IncomparableObjectsException;
 abstract class AbstractValueObject implements ValueObjectInterface
 {
     /**
-     * @param $this $to
+     * @param ValueObjectInterface $to
      *
      * @return int
      */
     abstract protected function doComparison($to);
+
+    /**
+     * @param ValueObjectInterface $to
+     *
+     * @return ValueObjectInterface
+     */
+    abstract protected function doDiff($to);
     
     /**
      * @param ValueObjectInterface $to
@@ -43,5 +50,21 @@ abstract class AbstractValueObject implements ValueObjectInterface
         }
 
         return $this->doComparison($to);
+    }
+
+    /**
+     * @param ValueObjectInterface $to
+     *
+     * @return ValueObjectInterface
+     *
+     * @throws IncomparableObjectsException
+     */
+    public function diff(ValueObjectInterface $to)
+    {
+        if (false === $this->isComparable($to)) {
+            throw new IncomparableObjectsException($this, $to);
+        }
+
+        return $this->doDiff($to);
     }
 }

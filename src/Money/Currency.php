@@ -51,4 +51,22 @@ class Currency extends AbstractValueObject
     {
         return strcmp($this->code, $to->getCode());
     }
+
+    /**
+     * @param Currency $to
+     *
+     * @return Currency
+     */
+    protected function doDiff($to)
+    {
+        return $to;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function __toString()
+    {
+        return $this->code;
+    }
 }

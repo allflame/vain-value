@@ -53,12 +53,22 @@ class Weight extends AbstractValueObject implements ValueObjectInterface
 
     /**
      * @param Weight $to
+     * 
+     * @return float
+     */
+    protected function getScaledDiff(Weight $to)
+    {
+        return $to->quantity * $this->coefficientProvider->getCoefficient($to->getUnits(), $this->units);
+    }
+
+    /**
+     * @param Weight $to
      *
      * @return int
      */
     protected function doComparison($to)
     {
-        $diff = $this->quantity * $this->coefficientProvider->getCoefficient($this->units, $to->getUnits());
+        $diff = $this->getScaledDiff($to);
 
         if (abs($diff) < pow(10, self::PRECISION)) {
             return self::EQUAL;
@@ -72,12 +82,20 @@ class Weight extends AbstractValueObject implements ValueObjectInterface
     }
 
     /**
+     * @param Weight $to
+     *
+     * @return Weight
+     */
+    protected function doDiff($to)
+    {
+        return new Weight($this->getScaledDiff($to), $this->units, $this->coefficientProvider);
+    }
+    
+    /**
      * @return string
      */
     public function __toString()
     {
         return sprintf('%s %s', $this->quantity, $this->units);
     }
-
-
 }
