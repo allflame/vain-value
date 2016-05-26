@@ -16,10 +16,17 @@ interface ValueObjectInterface
 
     /**
      * @param ValueObjectInterface $to
-     * 
+     *
      * @return int
      */
     public function compare(ValueObjectInterface $to);
+
+    /**
+     * @param ValueObjectInterface $to
+     *
+     * @return ValueObjectInterface
+     */
+    public function diff(ValueObjectInterface $to);
 
     /**
      * @return string
