@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 5/10/16
- * Time: 10:22 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-comparator
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-comparator
  */
 
 namespace Vain\Value\Weight;
@@ -12,6 +15,11 @@ use Vain\Value\AbstractValueObject;
 use Vain\Value\ValueObjectInterface;
 use Vain\Value\Weight\Coefficient\CoefficientProviderInterface;
 
+/**
+ * Class Weight
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class Weight extends AbstractValueObject implements ValueObjectInterface
 {
     const PRECISION = 3;

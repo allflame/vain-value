@@ -1,0 +1,2 @@
+imports:
+  - { resource: 'vendor/vain/core/config/di.yml' }

@@ -1,14 +1,21 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 5/10/16
- * Time: 11:03 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-comparator
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-comparator
  */
 
 namespace Vain\Value\Weight\Coefficient;
 
-
+/**
+ * Class ConstantCoefficientMap
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class ConstantCoefficientMap implements CoefficientProviderInterface
 {
     /**
