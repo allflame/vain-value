@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 5/10/16
- * Time: 10:24 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-comparator
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-comparator
  */
 
 namespace Vain\Value\Money;
@@ -11,6 +14,11 @@ namespace Vain\Value\Money;
 use Vain\Value\AbstractValueObject;
 use Vain\Value\Money\Rate\RateProviderInterface;
 
+/**
+ * Class Money
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class Money extends AbstractValueObject
 {
 

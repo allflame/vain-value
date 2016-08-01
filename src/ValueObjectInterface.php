@@ -1,13 +1,21 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 5/10/16
- * Time: 10:21 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-comparator
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-comparator
  */
 
 namespace Vain\Value;
 
+/**
+ * Interface ValueObjectInterface
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 interface ValueObjectInterface
 {
     const EQUAL = 0;
