@@ -10,7 +10,7 @@
  */
 namespace Vain\Value\Exception;
 
-use Vain\Core\Exception\CoreException;
+use Vain\Core\Exception\AbstractCoreException;
 use Vain\Value\ValueObjectInterface;
 
 /**
@@ -18,7 +18,7 @@ use Vain\Value\ValueObjectInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class IncomparableObjectsException extends CoreException
+class IncomparableObjectsException extends AbstractCoreException
 {
     private $what;
 
