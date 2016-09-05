@@ -8,6 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-comparator
  */
+declare(strict_types = 1);
 
 namespace Vain\Value\Weight;
 
@@ -32,11 +33,11 @@ class Weight extends AbstractValueObject implements ValueObjectInterface
 
     /**
      * Weight constructor.
-     * @param float $quantity
-     * @param string $units
+     * @param float                        $quantity
+     * @param string                       $units
      * @param CoefficientProviderInterface $coefficientProvider
      */
-    public function __construct($quantity, $units, CoefficientProviderInterface $coefficientProvider)
+    public function __construct(float $quantity, string $units, CoefficientProviderInterface $coefficientProvider)
     {
         $this->quantity = $quantity;
         $this->units = $units;
@@ -61,7 +62,7 @@ class Weight extends AbstractValueObject implements ValueObjectInterface
 
     /**
      * @param Weight $to
-     * 
+     *
      * @return float
      */
     protected function getScaledDiff(Weight $to)
@@ -74,7 +75,7 @@ class Weight extends AbstractValueObject implements ValueObjectInterface
      *
      * @return int
      */
-    protected function doComparison($to)
+    protected function doComparison($to) : int
     {
         $diff = $this->getScaledDiff($to);
 
@@ -94,15 +95,15 @@ class Weight extends AbstractValueObject implements ValueObjectInterface
      *
      * @return Weight
      */
-    protected function doDiff($to)
+    protected function doDiff($to) : ValueObjectInterface
     {
         return new Weight($this->getScaledDiff($to), $this->units, $this->coefficientProvider);
     }
-    
+
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf('%s %s', $this->quantity, $this->units);
     }

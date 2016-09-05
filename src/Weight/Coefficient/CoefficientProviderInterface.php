@@ -8,6 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-comparator
  */
+declare(strict_types=1);
 
 namespace Vain\Value\Weight\Coefficient;
 
@@ -24,5 +25,5 @@ interface CoefficientProviderInterface
      *
      * @return float
      */
-    public function getCoefficient($from, $to);
+    public function getCoefficient(string $from, string $to) : float;
 }

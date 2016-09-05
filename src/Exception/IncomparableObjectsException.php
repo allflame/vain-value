@@ -8,6 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-comparator
  */
+declare(strict_types = 1);
+
 namespace Vain\Value\Exception;
 
 use Vain\Core\Exception\AbstractCoreException;

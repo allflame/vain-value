@@ -8,10 +8,12 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-comparator
  */
+declare(strict_types=1);
 
 namespace Vain\Value\Money;
 
 use Vain\Value\AbstractValueObject;
+use Vain\Value\ValueObjectInterface;
 
 /**
  * Class Currency
@@ -29,7 +31,7 @@ class Currency extends AbstractValueObject
     /**
      * @return string
      */
-    public function getCode()
+    public function getCode() : string
     {
         return $this->code;
     }
@@ -37,7 +39,7 @@ class Currency extends AbstractValueObject
     /**
      * @return int
      */
-    public function getPrecision()
+    public function getPrecision() : int
     {
         return $this->precision;
     }
@@ -45,7 +47,7 @@ class Currency extends AbstractValueObject
     /**
      * @return int
      */
-    public function getExponent()
+    public function getExponent() : int
     {
         return $this->exponent;
     }
@@ -55,7 +57,7 @@ class Currency extends AbstractValueObject
      *
      * @return int
      */
-    protected function doComparison($to)
+    protected function doComparison($to) : int
     {
         return strcmp($this->code, $to->getCode());
     }
@@ -65,7 +67,7 @@ class Currency extends AbstractValueObject
      *
      * @return Currency
      */
-    protected function doDiff($to)
+    protected function doDiff($to) : ValueObjectInterface
     {
         return $to;
     }
@@ -73,7 +75,7 @@ class Currency extends AbstractValueObject
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return $this->code;
     }
