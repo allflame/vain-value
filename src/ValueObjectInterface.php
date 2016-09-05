@@ -8,15 +8,17 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-comparator
  */
+declare(strict_types=1);
 
 namespace Vain\Value;
+use Vain\Core\String\StringInterface;
 
 /**
  * Interface ValueObjectInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ValueObjectInterface
+interface ValueObjectInterface extends StringInterface
 {
     const EQUAL = 0;
     const LESS = -1;
@@ -27,17 +29,12 @@ interface ValueObjectInterface
      *
      * @return int
      */
-    public function compare(ValueObjectInterface $to);
+    public function compare(ValueObjectInterface $to) : int;
 
     /**
      * @param ValueObjectInterface $to
      *
      * @return ValueObjectInterface
      */
-    public function diff(ValueObjectInterface $to);
-
-    /**
-     * @return string
-     */
-    public function __toString();
+    public function diff(ValueObjectInterface $to) : ValueObjectInterface;
 }

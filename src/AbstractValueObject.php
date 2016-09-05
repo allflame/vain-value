@@ -8,6 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-comparator
  */
+declare(strict_types=1);
 
 namespace Vain\Value;
 
@@ -25,21 +26,21 @@ abstract class AbstractValueObject implements ValueObjectInterface
      *
      * @return int
      */
-    abstract protected function doComparison($to);
+    abstract protected function doComparison($to) : int;
 
     /**
      * @param ValueObjectInterface $to
      *
      * @return ValueObjectInterface
      */
-    abstract protected function doDiff($to);
+    abstract protected function doDiff($to) : ValueObjectInterface;
     
     /**
      * @param ValueObjectInterface $to
      *
      * @return bool
      */
-    protected function isComparable(ValueObjectInterface $to)
+    protected function isComparable(ValueObjectInterface $to) : bool
     {
         return ($to instanceof $this);
     }
@@ -51,7 +52,7 @@ abstract class AbstractValueObject implements ValueObjectInterface
      *
      * @throws IncomparableObjectsException
      */
-    public function compare(ValueObjectInterface $to)
+    public function compare(ValueObjectInterface $to) : int
     {
         if (false === $this->isComparable($to)) {
             throw new IncomparableObjectsException($this, $to);
@@ -67,7 +68,7 @@ abstract class AbstractValueObject implements ValueObjectInterface
      *
      * @throws IncomparableObjectsException
      */
-    public function diff(ValueObjectInterface $to)
+    public function diff(ValueObjectInterface $to) : ValueObjectInterface
     {
         if (false === $this->isComparable($to)) {
             throw new IncomparableObjectsException($this, $to);

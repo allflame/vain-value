@@ -8,6 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-comparator
  */
+declare(strict_types = 1);
 
 namespace Vain\Value\Money\Rate;
 
@@ -21,11 +22,11 @@ use Vain\Value\Money\Currency;
 interface RateProviderInterface
 {
     /**
-     * @param Currency $from
-     * @param Currency $to
-     * @param \DateTime $date
-     * 
+     * @param Currency           $from
+     * @param Currency           $to
+     * @param \DateTimeInterface $date
+     *
      * @return float
      */
-    public function getCurrencyRate(Currency $from, Currency $to, \DateTime $date = null);
+    public function getCurrencyRate(Currency $from, Currency $to, \DateTimeInterface $date = null) : float;
 }

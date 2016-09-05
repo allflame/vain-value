@@ -8,11 +8,13 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-comparator
  */
+declare(strict_types = 1);
 
 namespace Vain\Value\Money;
 
 use Vain\Value\AbstractValueObject;
 use Vain\Value\Money\Rate\RateProviderInterface;
+use Vain\Value\ValueObjectInterface;
 
 /**
  * Class Money
@@ -32,12 +34,12 @@ class Money extends AbstractValueObject
 
     /**
      * Money constructor.
-     * @param int $inPart
-     * @param int $decimalPart
-     * @param Currency $currency
+     * @param int                   $inPart
+     * @param float                 $decimalPart
+     * @param Currency              $currency
      * @param RateProviderInterface $rateProvider
      */
-    public function __construct($inPart, $decimalPart, Currency $currency, RateProviderInterface $rateProvider)
+    public function __construct(int $inPart, float $decimalPart, Currency $currency, RateProviderInterface $rateProvider)
     {
         $this->intPart = $inPart;
         $this->decimalPart = $decimalPart;
@@ -46,9 +48,9 @@ class Money extends AbstractValueObject
     }
 
     /**
-     * @return float
+     * @return int
      */
-    public function getIntPart()
+    public function getIntPart() : int
     {
         return $this->intPart;
     }
@@ -56,7 +58,7 @@ class Money extends AbstractValueObject
     /**
      * @return float
      */
-    public function getDecimalPart()
+    public function getDecimalPart() : float
     {
         return $this->decimalPart * pow(10, -$this->getCurrency()->getExponent());
     }
@@ -64,7 +66,7 @@ class Money extends AbstractValueObject
     /**
      * @return Currency
      */
-    public function getCurrency()
+    public function getCurrency() : Currency
     {
         return $this->currency;
     }
@@ -74,7 +76,7 @@ class Money extends AbstractValueObject
      *
      * @return float
      */
-    protected function getScaledDiff(Money $to)
+    protected function getScaledDiff(Money $to) : float
     {
         $currencyRate = $this->rateProvider->getCurrencyRate($to->getCurrency(), $this->currency, new \DateTime());
 
@@ -86,7 +88,7 @@ class Money extends AbstractValueObject
      *
      * @return int
      */
-    protected function doComparison($to)
+    protected function doComparison($to) : int
     {
         $difference = $this->getScaledDiff($to);
 
@@ -106,7 +108,7 @@ class Money extends AbstractValueObject
      *
      * @return Money
      */
-    protected function doDiff($to)
+    protected function doDiff($to) : ValueObjectInterface
     {
         $diff = $this->getScaledDiff($to);
         $intPart = intval($diff);
@@ -117,7 +119,7 @@ class Money extends AbstractValueObject
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf('%d.%d %s', $this->intPart, $this->decimalPart, $this->currency->getCode());
     }
