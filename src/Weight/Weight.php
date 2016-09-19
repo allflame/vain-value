@@ -33,6 +33,7 @@ class Weight extends AbstractValueObject implements ValueObjectInterface
 
     /**
      * Weight constructor.
+     *
      * @param float                        $quantity
      * @param string                       $units
      * @param CoefficientProviderInterface $coefficientProvider

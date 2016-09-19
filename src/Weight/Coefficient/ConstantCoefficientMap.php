@@ -8,7 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-comparator
  */
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Vain\Value\Weight\Coefficient;
 

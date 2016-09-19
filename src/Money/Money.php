@@ -23,7 +23,6 @@ use Vain\Value\ValueObjectInterface;
  */
 class Money extends AbstractValueObject
 {
-
     private $intPart;
 
     private $decimalPart;
@@ -34,13 +33,18 @@ class Money extends AbstractValueObject
 
     /**
      * Money constructor.
+     *
      * @param int                   $inPart
      * @param float                 $decimalPart
      * @param Currency              $currency
      * @param RateProviderInterface $rateProvider
      */
-    public function __construct(int $inPart, float $decimalPart, Currency $currency, RateProviderInterface $rateProvider)
-    {
+    public function __construct(
+        int $inPart,
+        float $decimalPart,
+        Currency $currency,
+        RateProviderInterface $rateProvider
+    ) {
         $this->intPart = $inPart;
         $this->decimalPart = $decimalPart;
         $this->currency = $currency;
@@ -80,7 +84,8 @@ class Money extends AbstractValueObject
     {
         $currencyRate = $this->rateProvider->getCurrencyRate($to->getCurrency(), $this->currency, new \DateTime());
 
-        return ($to->getIntPart() * $currencyRate - $this->getIntPart()) + ($to->getDecimalPart() * $currencyRate - $this->getDecimalPart());
+        return ($to->getIntPart() * $currencyRate - $this->getIntPart()) + ($to->getDecimalPart() * $currencyRate
+                                                                            - $this->getDecimalPart());
     }
 
     /**
