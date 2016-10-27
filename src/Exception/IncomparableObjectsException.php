@@ -37,9 +37,23 @@ class IncomparableObjectsException extends AbstractCoreException
         $this->what = $what;
         $this->to = $to;
         parent::__construct(
-            sprintf('Cannot compare object of class to object of class', get_class($what), get_class($to)),
-            0,
-            null
+            sprintf('Cannot compare object of class to object of class', get_class($what), get_class($to))
         );
+    }
+
+    /**
+     * @return ValueObjectInterface
+     */
+    public function getWhat(): ValueObjectInterface
+    {
+        return $this->what;
+    }
+
+    /**
+     * @return ValueObjectInterface
+     */
+    public function getTo(): ValueObjectInterface
+    {
+        return $this->to;
     }
 }
